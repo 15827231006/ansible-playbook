@@ -1,0 +1,65 @@
+---
+- name: 安装依赖
+  shell: yum install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-develfreetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-develglib2 glib2-devel bzip2 bzip2-devel geoip-devel -y 
+  ignore_errors: True
+
+- name: 分发解压nginx包
+  unarchive: src={{ item }} dest={{ tmp_dir }}
+  with_fileglob:
+    - "/opt/soft/nginx-*.tar.gz"
+  
+- name: 创建nginx用户www
+  user: name=www state=present
+  ignore_errors: True
+
+- name: 预编译nginx
+  shell: cd /tmp/nginx-* && \
+         ./configure --prefix={{ nginx_dir }} \
+         --user=www \
+         --group=www \
+         --with-http_geoip_module \
+         --with-http_ssl_module \
+         --with-http_realip_module \
+         --with-http_addition_module \
+         --with-http_sub_module \
+         --with-http_dav_module \
+         --with-http_flv_module \
+         --with-http_mp4_module \
+         --with-http_gunzip_module \
+         --with-http_gzip_static_module \
+         --with-http_random_index_module \
+         --with-http_secure_link_module \
+         --with-http_stub_status_module \
+         --with-mail \
+         --with-mail_ssl_module \
+         --with-file-aio
+  register: a_status
+- debug: var=a_status.stdout_lines
+
+- name: 编译nginx
+  shell: cd /tmp/nginx-* && \
+         make -j2
+  register: b_status
+- debug: var=b_status.stdout_lines
+
+- name: 安装nginx
+  shell: cd /tmp/nginx-* && \
+         make install
+  register: c_status
+- debug: var=c_status.stdout_lines
+
+- name: 分发nginx.conf文件
+  template: src=nginx.conf.j2 dest={{ nginx_dir }}/conf/nginx.conf
+
+- name: 创建geoip目录
+  file: dest={{ nginx_dir }}/geoip state=directory 
+
+- name: 创建vhost目录
+  file: dest={{ nginx_dir }}/conf/vhost state=directory
+
+- name: 分发geoip文件
+  copy: src={{ item }} dest={{ nginx_dir }}/geoip/
+  with_items:
+    - GeoIP.dat
+    - GeoLiteCity.dat
+

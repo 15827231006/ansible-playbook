@@ -1,0 +1,36 @@
+---
+- name: 安装依赖
+  yum: name=yum-utils state=latest 
+
+- name: 安装mysql源
+  shell:  rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm;
+          yum-config-manager --disable mysql80-community;
+          yum-config-manager --enable mysql57-community
+          
+- name: 安装mysql
+  yum: name=mysql-community-server state=latest 
+
+- name: 启动mysql服务
+  service: name=mysqld state=restarted enabled=yes
+  register: result
+  ignore_errors: True
+- debug: var=result.stdout_lines
+  
+- name: 获取mysql初始密码
+  shell: "grep 'temporary password' /var/log/mysqld.log|awk -F '[: ]+' '{print $13}'"
+  register: info
+- debug: msg={{ info['stdout'] }}
+
+- name: 修改mysql默认密码无特殊字符
+  shell: mysql --connect-expired-password -uroot -p'''{{ info['stdout'] }}''' -e "set global validate_password_policy=0;"
+
+- name: 修改mysql默认密码最小长度为6位
+  shell: mysql --connect-expired-password -uroot -p'''{{ info['stdout'] }}''' -e "set global validate_password_length=6;"
+
+- name: 修改mysql初始密码
+  shell: mysql --connect-expired-password -uroot -p'''{{ info['stdout'] }}''' -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('{{ mysql_passwd }}');"
+
+- name: 替换my.cnf
+  template: src=my.cnf dest=/etc/my.cnf 
+  notify:
+    - restart mysqld

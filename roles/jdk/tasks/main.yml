@@ -1,0 +1,24 @@
+---
+- name: 分发解压jdk
+  unarchive: src={{ item }} dest={{ tmp_dir }}
+  with_fileglob:
+    - "/opt/soft/jdk-8u221-linux-x64.tar.gz"
+
+- name: jdk复制到/usr/local/
+  shell: cp -rf {{ tmp_dir }}/jdk{{ jdk_version }} /usr/local/ &&
+         chown root.root /usr/local/jdk* -R 
+
+- name: 检查环境变量
+  shell: cat /etc/profile
+  register: result
+
+- name: 设置java环境变量
+  shell: /bin/echo {{ item }} >> /etc/profile; source /etc/profile
+  when: result.stdout.find('JAVA_HOME')==-1
+  with_items:
+    - export JAVA_HOME=/usr/local/jdk{{ jdk_version }}
+    - export JAVA_BIN=/usr/local/jdk{{ jdk_version }}/bin
+    - export PATH=\$PATH:/usr/local/jdk{{ jdk_version }}/bin
+    - export JRE_HOME=/usr/local/jdk{{ jdk_version }}/jre
+    - export CLASSPATH=.:/usr/local/jdk{{ jdk_version }}/lib:/usr/local/jdk{{ jdk_version }}/jre/lib
+    - export JAVA_HOME JAVA_BIN PATH JRE_HOME CLASSPATH

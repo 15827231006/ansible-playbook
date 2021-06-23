@@ -1,0 +1,10 @@
+zabbix_server: '120.25.26.101'
+inventory_dir: '/opt/soft'
+tmp_dir: '/tmp'
+php_dir: '/usr/local/php7'
+nginx_dir: '/usr/local/nginx'
+
+jdk_version: '1.8.0_221'
+mysql_passwd: 'Zabbix2018!'
+mysql_port: '3306'
+

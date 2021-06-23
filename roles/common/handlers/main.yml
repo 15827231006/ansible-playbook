@@ -1,0 +1,7 @@
+---
+- name: load global env
+  shell: source /root/.bashrc
+- name: sysctl effective
+  shell: /usr/sbin/sysctl -p
+- name: restart sshd
+  shell: systemctl restart sshd

@@ -1,0 +1,10 @@
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+DebugLevel=3
+Server={{ zabbix_server }}
+ListenPort=10050
+ServerActive={{ zabbix_server }}:10051
+Hostname={{ ansible_default_ipv4.address }} 
+HostMetadata=Linux ksd2020f8dsad3fgsgf21bffdfde6dads090sd8d4128558ab990802
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
+UserParameter=tcp[*],ss -antp |awk '{a[$$1]++}END{print a["'$1'"]}'

@@ -1,0 +1,12 @@
+---
+- name: 备份文件
+  shell: cd /opt/cangku && \
+         d=`date +%Y-%m-%d-%H-%M-%S` && \
+         tar czf pack_${d}.tar ./* && \ 
+         mv pack_${d}.tar /opt/backup
+
+- name: 安装git客户端
+  yum: name=git state=present
+- name: 拉取git仓库代码
+  git: repo=https://github.com/lizhenliang/ansible-install-k8s.git dest=/opt/cangku  update=yes force=yes
+

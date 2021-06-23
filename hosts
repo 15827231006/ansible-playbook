@@ -1,0 +1,48 @@
+[jlqp]
+#18.163.138.137:12128   ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/jlqp-project.pem
+
+[elk]
+#47.75.147.164:12128    ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/M21-3.pem
+#121.40.74.16      ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+121.41.80.181     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+47.115.19.175     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+47.115.19.175     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+120.79.71.177     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+120.79.11.230     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+120.79.82.133     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+47.113.124.92     ansible_ssh_user=root   ansible_ssh_private_key_file=/etc/ansible/pem/id_rsa
+
+
+
+#47.115.13.214    ansible_ssh_user=root   ansible_ssh_pass=j5lYt@r!fj
+#8.129.177.136:22    ansible_ssh_user=root   ansible_ssh_pass=j5lYt@r!fj
+#111.230.232.40:12128   ansible_ssh_user=root   ansible_ssh_pass=6Y%PBAtFvC2J
+
+
+[jinniu]
+#129.204.165.160   ansible_ssh_user=root ansible_ssh_pass=o$v75X%WmWe
+#18.162.45.192     ansible_ssh_user=ec2-user  ansible_ssh_private_key_file=/etc/ansible/pem/V31-JN.pem
+#18.163.151.36     ansible_ssh_user=centos    ansible_ssh_private_key_file=/etc/ansible/pem/V31-nginx.pem
+
+[xxoo]
+#36.42.73.216  ansible_ssh_user=root ansible_ssh_pass="SXXX2#2f42207.0"
+
+[M22]
+#18.163.157.146:12128     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.162.69.29:12128       ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.166.0.98:12128        ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.163.75.13:12128       ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.163.78.134:12128      ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.163.199.132:12128     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.162.34.238:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#18.162.34.238:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-AWS.pem
+#111.231.103.62:18168     ansible_ssh_user=root ansible_ssh_pass=CMVkIEa}TZ(F
+#122.51.144.74:18168        ansible_ssh_user=root ansible_ssh_pass=CMVkIEa}TZ(F
+#18.163.227.75:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.163.235.80:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.162.233.150:18168    ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.163.244.45:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.163.219.165:18168    ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.166.12.135:18168     ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.166.14.83:18168      ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
+#18.163.216.110:18168    ansible_ssh_user=ec2-user   ansible_ssh_private_key_file=/etc/ansible/pem/M22-prod.pem
